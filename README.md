@@ -4,15 +4,15 @@ This repository is a **step-by-step learning project** that explains how a **Spr
 
 This README is intentionally **very detailed** so that:
 
-* You can re-read it after months and still understand everything
-* You can explain the full flow confidently to your TL or interviewer
-* You learn *why* each layer, dependency, and file exists
+* You/I can re-read it after months and still understand everything
+* You/I can explain the full flow confidently to your TL or interviewer
+* You/I learn *why* each layer, dependency, and file exists
 
-> ⚠️ All sensitive information (AWS Account ID, Access Keys, Secret Keys, User Pool IDs) is **intentionally hidden**.
+> All sensitive information (AWS Account ID, Access Keys, Secret Keys, User Pool IDs) is **intentionally hidden**.
 
 ---
 
-## 🎯 What This Project Is About (In Simple Words)
+## What This Project Is About (In Simple Words)
 
 Think of this project like this:
 
@@ -26,7 +26,7 @@ This project solves exactly that.
 
 ---
 
-## 🧠 What Is a Microservice? (Beginner Explanation)
+##  What Is a Microservice? (Beginner Explanation)
 
 A **microservice** is a small backend application that:
 
@@ -47,7 +47,7 @@ Why microservices?
 
 ---
 
-## 🧩 High-Level Flow (Big Picture)
+##  High-Level Flow (Big Picture)
 
 ```
 Postman (Client)
@@ -67,7 +67,7 @@ Each arrow represents a **clear responsibility boundary**.
 
 ---
 
-## 🛠 Tech Stack (Why Each One Is Used)
+## Tech Stack (Why Each One Is Used)
 
 ### Java 21
 
@@ -113,7 +113,7 @@ Each arrow represents a **clear responsibility boundary**.
 
 ---
 
-## 📂 Project Structure (Explained Like a Story)
+## Project Structure 
 
 ```
 src/main/java/com/resanth/aws/aws_springboot_project
@@ -145,7 +145,7 @@ Each folder exists for a **reason**, not randomly.
 
 ---
 
-## 🧠 Controller Layer (What & Why)
+## Controller Layer (What & Why)
 
 ### What is a Controller?
 
@@ -164,7 +164,7 @@ This keeps controllers **thin and clean**.
 
 ---
 
-## 🧠 Service Interface (Why It Exists)
+## Service Interface 
 
 ### Why an interface?
 
@@ -178,7 +178,7 @@ Example idea:
 
 ---
 
-## 🧠 Service Implementation (Actual Brain)
+## Service Implementation 
 
 This is where:
 
@@ -196,7 +196,7 @@ Flow inside service:
 
 ---
 
-## ☁️ AWS SDK & Cognito (Beginner Explanation)
+## AWS SDK & Cognito 
 
 ### What is AWS SDK?
 
@@ -212,7 +212,7 @@ You **never manually call AWS REST APIs** — SDK handles everything.
 
 ---
 
-## 🔐 AWS Authentication (Very Important)
+## AWS Authentication 
 
 This project uses **IAM-based authentication**.
 
@@ -237,7 +237,7 @@ This is the **correct and secure way**.
 
 ---
 
-## 🌐 API Endpoint Explained Slowly
+## API Endpoint Explanation:
 
 ### Endpoint Purpose
 
@@ -264,7 +264,7 @@ http://localhost:8080/cognito/user-pool
 
 ---
 
-## 🧪 Postman Testing (Beginner Friendly)
+## Postman Testing 
 
 Step-by-step:
 
@@ -282,42 +282,230 @@ What happens internally:
 
 ---
 
-## 🧠 What You Should Remember (Key Learnings)
+## WHAT I BUILT CLEARLY STEP BY STEP:
 
-* Controllers should be simple
-* Business logic belongs in services
-* Never hardcode credentials
-* AWS SDK handles security automatically
-* Clean architecture makes debugging easy
-* This pattern applies to **all AWS services**
+### Step 1:
+Opening Spring Official Website
+
+First, I opened the browser and went to ```https://spring.io```
+The reason I started here is because Spring.io is the official source for Spring Boot. My TL clearly told me not to depend on random blogs or YouTube videos. So whatever I build should be based on Spring’s own documentation.
+At this stage, I was not writing any code. I was only trying to understand how Spring expects a backend project to be structured.
+
+### Step 2:
+Reading Spring “Building a RESTful Web Service” Guide
+
+From Spring.io, I navigated to Learn → Guides and opened the guide called “Building a RESTful Web Service”.
+From this guide, I understood a few important things:
+- Spring Boot applications usually start with a REST controller
+- APIs are created using annotations like ```@RestController, @GetMapping, @PostMapping```
+- Spring Boot already handles server setup internally
+This step helped me understand what to write first after creating the project.
+
+### Step 3:
+Creating Spring Boot Project using Spring Initializr
+
+Next, I opened ```https://start.spring.io```
+This site is used to generate a ready-made Spring Boot project.
+Here I filled the details:
+- Project: Maven (because it is standard in enterprise projects)
+- Language: Java
+- Java version: 21
+- Group: com.resanth.aws
+- Artifact: aws-springboot-project
+- Packaging: Jar
+
+Then I added dependencies:
+- Spring Web → needed to create REST APIs
+- Spring Security → needed for authentication-related features
+- OAuth2 Resource Server → needed later for AWS Cognito JWT handling
+
+After this, I clicked Generate, and a ZIP file was downloaded.
+
+### Step 4:
+Extracting ZIP and Opening in IntelliJ IDEA
+
+I extracted the downloaded ZIP file to my local system.
+Then I opened IntelliJ IDEA, clicked Open, and selected the extracted project folder.
+
+IntelliJ automatically detected it as a Maven project and started downloading dependencies defined in ```pom.xml```.
+I waited until indexing and dependency download was completed.
+
+This step is important because without successful Maven dependency download, the project will not compile.
+
+### Step 5:
+Running the Default Spring Boot Application
+
+Before adding any code, I ran the default Spring Boot application class that was generated.
+What happened internally:
+- Spring Boot started an embedded Tomcat server
+- Application started on port 8080
+
+Purpose of this step:
+To confirm that the project setup is correct and there are no environment or configuration issues.
+
+### Step 6:
+Understanding Microservice Structure (Before Writing Code)
+
+Before writing AWS or Cognito code, I paused and understood microservice architecture.
+From Spring documentation, I learned:
+- Controller layer handles HTTP requests
+- Service layer contains business logic
+- External systems (AWS, DB) are accessed from service layer
+This helped me avoid writing everything in one class.
+
+### Step 7:
+Creating Controller Package and Controller Class
+
+Inside ```src/main/java```, I created a controller package.
+
+Why becoz:
+- Spring documentation says controllers should be inside the base package so Spring can scan them.
+- Inside the controller, I used ```@RestController```.
+- This annotation tells Spring that this class will handle REST requests and return data directly.
+
+At this stage, I only created basic structure. No AWS logic was written here.
+
+### Step 8:
+Creating Service Interface and Service Implementation
+
+Next, I created a service package.
+First, I created a service interface.
+The reason for creating an interface is to define what operations the service provides, without worrying about how they are implemented.
+
+Then I created a service implementation class.
+This class contains the actual logic and will later talk to AWS.
+
+Spring annotations were added so that Spring can inject this service into the controller
+
+### Step 9:
+STEP 9: Creating AWS Account
+
+After the backend structure was ready, I moved to AWS.
+
+I went to ```https://console.aws.amazon.com/console``` and created a new AWS console root account.
+I completed:
+- Email verification
+- Phone verification
+- Payment verification
+
+AWS showed a message that some services may take up to 24 hours to activate.
+
+### Step 10:
+Waiting for AWS Services to Activate
+
+After account verification, I noticed that IAM and Cognito were not immediately accessible.
+
+This was not a code issue.
+AWS needs time to activate services internally.
+
+So I waited until AWS fully enabled IAM and Cognito access.
+
+### Step 11:
+Creating IAM User (Not Using Root Account)
+Once AWS was active, I created an IAM user.
+
+Why becoz:
+AWS best practice says root account should never be used in applications.
+I created an IAM user with:
+- Programmatic access
+- Cognito-related permissions
+AWS generated:
+- Access Key
+- Secret Key
+
+### Step 12:
+Installing and Configuring AWS CLI
+Next, I installed AWS CLI on my system.
+Then I ran:
+```aws configure```
+I entered:
+- Access key
+- Secret key
+- Region
+- Output format (json)
+
+AWS CLI stored these details securely in .aws folder.
+
+### Step 13:
+Verifying AWS Credentials
+To confirm everything works, I ran:
+```aws sts get-caller-identity```
+
+AWS returned IAM user details.
+This confirmed that:
+- My system can authenticate with AWS
+- Credentials are correctly configured
+
+### Step 14:
+Adding AWS SDK Dependencies to Spring Boot
+Back in the Spring Boot project, I added AWS SDK dependencies for Cognito.
+Initially, I faced errors due to missing or mismatched dependencies.
+After understanding how Spring Boot parent POM manages versions, 
+I fixed this by letting Spring handle versions automatically.
+
+After this fix, the project built successfully.
+
+### Step 15:
+Creating AWS Cognito Client Configuration
+I created a configuration class and defined a CognitoIdentityProviderClient as a Spring bean.
+
+Why becoz:
+External clients like AWS SDK clients should be managed by Spring for dependency injection.
+Initially, I faced runtime errors because region was not set.
+After explicitly setting the region, the issue was resolved.
+
+### Step 16:
+Writing Cognito Logic in Service Layer
+Inside the service implementation, I wrote logic to create a Cognito User Pool using AWS SDK.
+This logic was kept strictly inside the service layer, not in the controller.
+
+### Step 17:
+Running the Application After Full Integration
+I ran the Spring Boot application again.
+
+This time:
+- Application started successfully
+- AWS client was injected properly
+- No runtime errors
+
+### Step 18:
+Testing API Using Postman
+I opened Postman and created a POST request.
+I entered:
+- API URL
+- Required parameters
+
+When I clicked Send:
+- Request went to controller
+- Controller called service
+- Service called AWS SDK
+- AWS Cognito processed the request
+- Response came back to Postman
+
+### Step 19:
+Verifying Result in AWS Console
+Finally, I opened AWS Console and navigated to Cognito → User Pools.
+I verified that the user pool was created successfully.
 
 ---
 
-## 🚀 What You Can Build Next Using This Knowledge
-
-* Cognito App Client creation
-* User signup API
-* Login & token generation
-* JWT validation
-* Secure APIs with Cognito
-* MongoDB integration
-
----
-
-## 👤 Author
+## Whole Task completed by:
 
 **Resanth SR**
 Backend | Cloud | AWS | Spring Boot
 
 ---
 
-## ⭐ Final Note
+## Final Note
 
-This README is intentionally verbose so it can act as:
+This README is intentionally verbose so it can act as my personl:
 
 * Learning notes
 * Revision material
 * Project documentation
 * Interview explanation base
 
-This is **not copy-paste code learning** — this is **conceptual backend learning**.
+## Project ScreenShot (Intellij)
+
+  <img width="1920" height="1015" alt="image" src="https://github.com/user-attachments/assets/28f13617-c0b4-4525-a3f3-278d59adc886" />
+

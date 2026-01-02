@@ -509,7 +509,7 @@ Revoke:
 Both serve different security purposes.
 
 ***I've achieved both log-out and revoke completely and verified in this project***
-***I've also attached the ```pom.xml``` for this specific project as **pom.xml**.***
+***I've also attached the ```pom.xml``` for this specific project as **AUTH_pom.xml**.***
 
 ### Project Screenshot (Intellij):
 <img width="1913" height="1013" alt="image" src="https://github.com/user-attachments/assets/1409c979-500c-4183-a744-7290144e094b" />
